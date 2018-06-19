@@ -23,18 +23,7 @@
 #  
 
 
-import mysql.connector
-from mysql.connector import errorcode
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
 
-try:
-  cnx = mysql.connector.connect(user='scott',
-                                database='testt')
-except mysql.connector.Error as err:
-  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with your user name or password")
-  elif err.errno == errorcode.ER_BAD_DB_ERROR:
-    print("Database does not exist")
-  else:
-    print(err)
-else:
-  cnx.close()
